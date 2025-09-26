@@ -1,0 +1,34 @@
+{
+  "name": "vyria-presentation",
+  "version": "1.0.0",
+  "description": "Presentation website for Vyria - AI-powered language learning app",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [
+    "vyria",
+    "language learning",
+    "AI",
+    "chat"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.1.14",
+    "@types/react-dom": "^19.1.9",
+    "autoprefixer": "^10.4.21",
+    "framer-motion": "^12.23.22",
+    "lucide-react": "^0.544.0",
+    "next": "^15.5.4",
+    "postcss": "^8.5.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.9.2"
+  }
+}
