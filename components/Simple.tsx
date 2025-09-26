@@ -42,10 +42,8 @@ export default function Simple() {
           </div>
 
           {/* Join */}
-          <div className="pt-16 border-t border-gray-900">
-            <button className="text-white text-xl font-light border-b-2 border-white pb-1 hover:border-blue-500 hover:text-blue-500 transition">
-              Join the waitlist →
-            </button>
+          <div className="pt-16 border-t border-gray-900" id="waitlist">
+            <div className="launchlist-widget" data-key-id="joHpKT" data-height="180px"></div>
           </div>
         </motion.div>
       </div>

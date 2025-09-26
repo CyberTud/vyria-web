@@ -73,13 +73,8 @@ export default function Hero() {
           <p className="text-gray-500 text-sm mb-6">
             Real conversations. Real languages. Real progress.
           </p>
-          <div className="flex gap-4 justify-center">
-            <button className="px-6 py-3 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform">
-              Join Waitlist
-            </button>
-            <button className="px-6 py-3 border border-gray-700 text-white font-medium rounded-full hover:border-gray-500 transition">
-              Watch Demo
-            </button>
+          <div className="flex justify-center">
+            <div className="launchlist-widget" data-key-id="joHpKT" data-height="180px"></div>
           </div>
         </motion.div>
       </div>

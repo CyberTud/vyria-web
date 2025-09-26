@@ -10,9 +10,9 @@ export default function Navbar() {
           </div>
 
           <div>
-            <button className="text-gray-400 hover:text-white transition text-sm">
+            <a href="#waitlist" className="text-gray-400 hover:text-white transition text-sm">
               Waitlist
-            </button>
+            </a>
           </div>
         </div>
       </div>
