@@ -9,15 +9,9 @@ export default function Navbar() {
             V
           </div>
 
-          <div className="flex gap-8 items-center">
-            <a href="#scenarios" className="text-gray-400 hover:text-white transition text-sm">
-              Scenarios
-            </a>
-            <a href="#demo" className="text-gray-400 hover:text-white transition text-sm">
-              Examples
-            </a>
-            <button className="px-5 py-2 bg-gradient-to-r from-blue-600 to-emerald-600 text-white text-sm font-bold rounded-full hover:scale-105 transition-transform">
-              Get Access
+          <div>
+            <button className="text-gray-400 hover:text-white transition text-sm">
+              Waitlist
             </button>
           </div>
         </div>

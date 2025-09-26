@@ -1,8 +1,6 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
-import Scenarios from '@/components/Scenarios'
-import Demo from '@/components/Demo'
-import CTA from '@/components/CTA'
+import Simple from '@/components/Simple'
 import Footer from '@/components/Footer'
 
 export default function Home() {
@@ -11,9 +9,7 @@ export default function Home() {
       <Navbar />
       <main className="min-h-screen">
         <Hero />
-        <Scenarios />
-        <Demo />
-        <CTA />
+        <Simple />
         <Footer />
       </main>
     </>
