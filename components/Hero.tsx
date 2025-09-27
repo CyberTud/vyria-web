@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import WaitlistForm from './WaitlistForm'
 
 export default function Hero() {
   return (
@@ -73,9 +74,7 @@ export default function Hero() {
           <p className="text-gray-500 text-sm mb-6">
             Real conversations. Real languages. Real progress.
           </p>
-          <div className="flex justify-center">
-            <div className="launchlist-widget" data-key-id="joHpKT" data-height="180px"></div>
-          </div>
+          <WaitlistForm />
         </motion.div>
       </div>
 

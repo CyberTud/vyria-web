@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import WaitlistForm from './WaitlistForm'
 
 export default function Simple() {
   return (
@@ -43,7 +44,7 @@ export default function Simple() {
 
           {/* Join */}
           <div className="pt-16 border-t border-gray-900" id="waitlist">
-            <div className="launchlist-widget" data-key-id="joHpKT" data-height="180px"></div>
+            <WaitlistForm />
           </div>
         </motion.div>
       </div>
