@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const { Pool } = require('pg');
+const Database = require('better-sqlite3');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -10,55 +11,42 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// PostgreSQL connection
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
-});
+// Database setup
+const dbPath = path.join(__dirname, 'waitlist.db');
+const db = new Database(dbPath);
 
-// Create table on startup
-async function initDatabase() {
-  try {
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS waitlist (
-        id SERIAL PRIMARY KEY,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `);
-    console.log('Database initialized');
-  } catch (error) {
-    console.error('Error initializing database:', error);
-  }
-}
-
-initDatabase();
+// Create table if it doesn't exist
+db.exec(`
+  CREATE TABLE IF NOT EXISTS waitlist (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT UNIQUE NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+`);
 
 // Helper functions
-async function addToWaitlist(email) {
+function addToWaitlist(email) {
   try {
-    const result = await pool.query(
-      'INSERT INTO waitlist (email) VALUES ($1) RETURNING id',
-      [email]
-    );
-    return { success: true, id: result.rows[0].id };
+    const stmt = db.prepare('INSERT INTO waitlist (email) VALUES (?)');
+    const result = stmt.run(email);
+    return { success: true, id: result.lastInsertRowid };
   } catch (error) {
-    if (error.code === '23505') { // Unique violation
+    if (error.code === 'SQLITE_CONSTRAINT_UNIQUE') {
       return { success: false, error: 'Email already registered' };
     }
-    console.error('Database error:', error);
     return { success: false, error: 'Failed to add to waitlist' };
   }
 }
 
-async function getWaitlistCount() {
-  const result = await pool.query('SELECT COUNT(*) FROM waitlist');
-  return parseInt(result.rows[0].count);
+function getWaitlistCount() {
+  const stmt = db.prepare('SELECT COUNT(*) as count FROM waitlist');
+  const result = stmt.get();
+  return result.count;
 }
 
-async function getAllWaitlistEntries() {
-  const result = await pool.query('SELECT * FROM waitlist ORDER BY created_at DESC');
-  return result.rows;
+function getAllWaitlistEntries() {
+  const stmt = db.prepare('SELECT * FROM waitlist ORDER BY created_at DESC');
+  return stmt.all();
 }
 
 // Routes
@@ -75,10 +63,10 @@ app.post('/api/waitlist', async (req, res) => {
       return res.status(400).json({ error: 'Please provide a valid email' });
     }
 
-    const result = await addToWaitlist(email);
+    const result = addToWaitlist(email);
 
     if (result.success) {
-      const count = await getWaitlistCount();
+      const count = getWaitlistCount();
       return res.json({
         success: true,
         message: 'Successfully added to waitlist!',
@@ -96,7 +84,7 @@ app.post('/api/waitlist', async (req, res) => {
 // Get waitlist count
 app.get('/api/waitlist', async (req, res) => {
   try {
-    const count = await getWaitlistCount();
+    const count = getWaitlistCount();
     res.json({ count });
   } catch (error) {
     console.error('Error getting waitlist count:', error);
@@ -114,7 +102,7 @@ app.post('/api/waitlist/all', async (req, res) => {
       return res.status(401).json({ error: 'Invalid password' });
     }
 
-    const entries = await getAllWaitlistEntries();
+    const entries = getAllWaitlistEntries();
     res.json({ entries });
   } catch (error) {
     console.error('Error fetching waitlist:', error);
