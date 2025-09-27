@@ -1,65 +1,110 @@
-# Vyria - Language Learning App Presentation
+# Vyria - Language Learning App Landing Page
 
-A modern, animated presentation website for Vyria - an AI-powered language learning mobile app that helps users master new languages through natural conversations.
+A modern, minimalist landing page for Vyria - an AI-powered language learning mobile app with integrated waitlist system.
 
-## 🚀 Features
+## 🚀 Deployment
 
-- **Hero Section**: Eye-catching intro with animated elements and key statistics
-- **Features Showcase**: Six core features with gradient icons and hover effects
-- **How It Works**: Simple 4-step process visualization
-- **Live Demo**: Interactive chat simulation showing real conversations in Spanish, French, and Japanese
-- **Testimonials**: User success stories with ratings
-- **Call to Action**: Compelling download section with gradient background
-- **Responsive Design**: Fully mobile-optimized layout
-- **Smooth Animations**: Framer Motion powered scroll animations
+This repository contains both the frontend (Netlify) and backend (Render) for the Vyria waitlist system.
 
-## 🛠️ Tech Stack
+### Frontend (Netlify)
+- Automatically deploys from the root directory
+- Live at: [Your Netlify URL]
+- Built with Next.js, TypeScript, and Tailwind CSS
 
-- **Next.js 15**: React framework with App Router
-- **TypeScript**: Type-safe development
-- **Tailwind CSS**: Utility-first styling
-- **Framer Motion**: Smooth animations and transitions
-- **Lucide Icons**: Modern icon set
+### Backend (Render)
+- Deploys from the `/server` directory
+- Provides waitlist API endpoints
+- Built with Express and SQLite
 
-## 📦 Installation
+## 📁 Project Structure
 
-```bash
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
+```
+vyria-web/
+├── app/                  # Next.js app directory
+├── components/           # React components
+├── public/              # Static assets (including vyria.png)
+├── server/              # Backend API (for Render)
+│   ├── index.js        # Express server
+│   ├── package.json    # Backend dependencies
+│   └── README.md       # Backend documentation
+├── .env.local          # Local environment variables
+├── .env.production     # Production environment variables
+├── netlify.toml        # Netlify configuration
+└── render.yaml         # Render configuration
 ```
 
-## 🎨 Design Features
+## 🛠️ Setup
 
-- Custom gradient color scheme (blue to purple)
-- Glass morphism effects
-- Floating animation elements
-- Interactive chat demo with auto-cycling conversations
-- Smooth scroll reveal animations
-- Professional typography with Inter font
+### Local Development
 
-## 📱 Sections
+1. **Frontend** (runs on http://localhost:3000):
+```bash
+npm install
+npm run dev
+```
 
-1. **Hero**: Main landing with value proposition
-2. **Features**: 6 key features of the app
-3. **How It Works**: 4-step getting started guide
-4. **Demo**: Live chat simulation
-5. **Testimonials**: User reviews
-6. **CTA**: Download call-to-action
-7. **Footer**: Links and social media
+2. **Backend** (runs on http://localhost:3001):
+```bash
+cd server
+npm install
+npm run dev
+```
 
-## 🌐 Deployment
+### Environment Variables
 
-The app is ready for deployment on Vercel, Netlify, or any other Next.js hosting platform.
+Create `.env.local` for local development:
+```
+NEXT_PUBLIC_API_URL=http://localhost:3001
+```
 
-## 📄 License
+Update `.env.production` for production:
+```
+NEXT_PUBLIC_API_URL=https://your-backend.onrender.com
+```
 
-This presentation website is created for the Vyria mobile app project.
+## 🔧 Deployment Instructions
+
+### Deploy to Netlify (Frontend)
+1. Connect this repository to Netlify
+2. Set build settings:
+   - Build command: `npm run build`
+   - Publish directory: `.next`
+3. Deploy!
+
+### Deploy to Render (Backend)
+1. Create a new Web Service on Render
+2. Connect this repository (https://github.com/CyberTud/vyria-web)
+3. Set configuration:
+   - Root Directory: `server`
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+4. Add environment variable:
+   - `ADMIN_PASSWORD`: tudorregele
+5. Deploy!
+
+## 📝 Features
+
+- ✨ Modern, minimal dark design
+- 📱 Mobile-responsive
+- 🎯 Custom waitlist system with SQLite database
+- 🔒 Protected admin panel at `/waitlist`
+- 📊 Export waitlist to CSV
+- 🚀 Optimized for performance
+- 🌊 Animated gradients and floating elements
+
+## 🔑 Admin Access
+
+Visit `/waitlist` and enter the admin password to view all signups.
+
+## 📚 Tech Stack
+
+- **Frontend**: Next.js 15, TypeScript, Tailwind CSS, Framer Motion
+- **Backend**: Express, SQLite, CORS
+- **Deployment**: Netlify (frontend), Render (backend)
+
+## 🎨 Design
+
+- Dark theme with blue/green gradient accents
+- Minimalist approach avoiding "AI slop" aesthetics
+- Large app screenshot as hero focal point
+- Simple, direct messaging: "Chat. Learn. Speak."
