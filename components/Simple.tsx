@@ -34,14 +34,6 @@ export default function Simple() {
             </h2>
           </div>
 
-          {/* When it launches */}
-          <div className="text-white">
-            <p className="text-lg text-gray-500 mb-4">When</p>
-            <h2 className="text-3xl font-light leading-relaxed">
-              Q1 2025. iOS and Android.
-            </h2>
-          </div>
-
           {/* Join */}
           <div className="pt-16 border-t border-gray-900" id="waitlist">
             <WaitlistForm />

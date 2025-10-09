@@ -30,9 +30,6 @@ export default function AppInfo() {
               Learn More
             </button>
           </div>
-          <p className="mt-8 text-sm text-slate-400">
-            Coming to iOS & Android • Q1 2025
-          </p>
         </motion.div>
       </div>
     </section>
