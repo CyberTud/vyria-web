@@ -1,84 +1,106 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Star, Quote } from 'lucide-react'
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Image from 'next/image'
 
-const testimonials = [
-  {
-    name: 'Sarah Chen',
-    role: 'Software Engineer',
-    avatar: '👩‍💻',
-    content: "Vyria transformed my Spanish learning journey. The AI conversations feel so natural, it's like chatting with a patient native speaker!",
-    rating: 5,
-    language: 'Learning Spanish'
-  },
-  {
-    name: 'Marcus Johnson',
-    role: 'Business Consultant',
-    avatar: '👨‍💼',
-    content: "I needed to learn French for work. Vyria's adaptive learning helped me go from beginner to conversational in just 3 months.",
-    rating: 5,
-    language: 'Learning French'
-  },
-  {
-    name: 'Yuki Tanaka',
-    role: 'College Student',
-    avatar: '👩‍🎓',
-    content: "The grammar explanations are clear and the cultural context tips are invaluable. Best language app I've ever used!",
-    rating: 5,
-    language: 'Learning Korean'
-  }
-]
+gsap.registerPlugin(ScrollTrigger)
 
 export default function Testimonials() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.testimonials-header', {
+        scrollTrigger: {
+          trigger: '.testimonials-header',
+          start: 'top 80%',
+        },
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: 'power3.out',
+      })
+
+      // Infinite scroll animation - always up
+      if (carouselRef.current) {
+        const carousel = carouselRef.current
+        const halfHeight = carousel.scrollHeight / 2
+        
+        // Start from the end
+        carousel.scrollTop = halfHeight
+
+        gsap.to(carousel, {
+          scrollTop: `-=${halfHeight}`,
+          duration: 40,
+          ease: 'none',
+          repeat: -1,
+          modifiers: {
+            scrollTop: gsap.utils.wrap(0, halfHeight)
+          }
+        })
+      }
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
+  const testimonials = [
+    '/testimonials/IMG_3964 2.jpg',
+    '/testimonials/IMG_3965.jpg',
+    '/testimonials/IMG_3966.jpg',
+    '/testimonials/IMG_3967.jpg',
+    '/testimonials/IMG_3968.jpg',
+    '/testimonials/IMG_3977.jpg',
+    '/testimonials/IMG_3978.jpg',
+  ]
+
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Loved by <span className="text-gradient">Language Learners</span>
+    <section ref={sectionRef} id="testimonials" className="py-24 md:py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="testimonials-header text-center mb-16">
+          <div className="inline-block px-4 py-2 bg-yellow-100 border border-yellow-200 rounded-full mb-6">
+            <span className="text-sm font-semibold text-gray-900">💬 LOVED BY LEARNERS</span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+            What People Are Saying
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Join thousands of satisfied users who are mastering new languages with Vyria
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Real feedback from language learners on X (Twitter)
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
-            >
-              <Quote className="w-8 h-8 text-primary-200 mb-4" />
-
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-
-              <p className="text-gray-700 mb-6 italic">"{testimonial.content}"</p>
-
-              <div className="flex items-center gap-3">
-                <div className="text-3xl">{testimonial.avatar}</div>
-                <div>
-                  <p className="font-semibold">{testimonial.name}</p>
-                  <p className="text-sm text-gray-500">{testimonial.role}</p>
-                  <p className="text-xs text-primary-500 font-medium">{testimonial.language}</p>
+        {/* Vertical Carousel */}
+        <div className="max-w-4xl mx-auto relative">
+          <div 
+            ref={carouselRef}
+            className="h-[600px] overflow-hidden rounded-3xl bg-gradient-to-b from-gray-50 to-white border-2 border-gray-200 shadow-2xl"
+          >
+            <div className="flex flex-col gap-4 p-6">
+              {[...testimonials, ...testimonials].map((testimonial, i) => (
+                <div
+                  key={i}
+                  className="flex-shrink-0 w-full max-w-sm mx-auto bg-white rounded-2xl border-2 border-gray-200 overflow-hidden hover:border-yellow-500 transition-all duration-300 hover:shadow-xl"
+                >
+                  <Image
+                    src={testimonial}
+                    alt={`User testimonial from X/Twitter`}
+                    width={400}
+                    height={600}
+                    className="w-full h-auto object-contain"
+                    priority={i < 3}
+                  />
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              ))}
+            </div>
+          </div>
+          
+          {/* Gradient overlays for fade effect */}
+          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-gray-50 to-transparent pointer-events-none rounded-t-3xl z-10" />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none rounded-b-3xl z-10" />
         </div>
       </div>
     </section>

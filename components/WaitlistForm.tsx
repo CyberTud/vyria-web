@@ -58,13 +58,13 @@ export default function WaitlistForm() {
             exit={{ opacity: 0, y: -10 }}
             className="text-center"
           >
-            <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-6">
+            <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-6">
               <div className="text-4xl mb-3">✨</div>
-              <h3 className="text-xl font-bold text-emerald-400 mb-2">You're on the list!</h3>
-              <p className="text-gray-400">
+              <h3 className="text-xl font-bold text-green-700 mb-2">You're on the list!</h3>
+              <p className="text-gray-700">
                 You're #{position} on the waitlist
               </p>
-              <p className="text-gray-500 text-sm mt-2">
+              <p className="text-gray-600 text-sm mt-2">
                 We'll email you when Vyria launches
               </p>
             </div>
@@ -84,13 +84,13 @@ export default function WaitlistForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-full text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition"
+                className="flex-1 px-6 py-4 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition"
                 disabled={status === 'loading'}
               />
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="px-8 py-3 bg-gradient-to-r from-blue-500 to-emerald-500 text-white font-bold rounded-full hover:shadow-lg hover:shadow-blue-500/25 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-4 bg-yellow-500 text-white font-bold rounded-xl hover:bg-yellow-600 hover:shadow-lg hover:shadow-yellow-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105"
               >
                 {status === 'loading' ? 'Joining...' : 'Join Waitlist'}
               </button>
@@ -100,13 +100,13 @@ export default function WaitlistForm() {
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-red-400 text-sm text-center"
+                className="text-red-600 text-sm text-center font-medium"
               >
                 {message}
               </motion.p>
             )}
 
-            <p className="text-gray-600 text-xs text-center">
+            <p className="text-gray-500 text-xs text-center">
               Be the first to know when we launch. No spam, promise.
             </p>
           </motion.form>

@@ -8,10 +8,15 @@ export const metadata: Metadata = {
   title: 'Vyria - Learn Languages Through AI Conversations',
   description: 'Master any language naturally through engaging AI-powered conversations. Your personal language learning companion.',
   keywords: 'language learning, AI chat, mobile app, language practice, conversational learning',
+  icons: {
+    icon: '/vyria_logo.png',
+    apple: '/vyria_logo.png',
+  },
   openGraph: {
     title: 'Vyria - Learn Languages Through AI Conversations',
     description: 'Master any language naturally through engaging AI-powered conversations.',
     type: 'website',
+    images: ['/vyria_logo.png'],
   },
 }
 
