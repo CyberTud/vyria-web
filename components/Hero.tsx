@@ -85,7 +85,7 @@ export default function Hero() {
           </div>
 
           {/* Title */}
-          <h1 className="hero-title text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-8 leading-tight">
+          <h1 className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
             Practice Real
             <br />
             <span className="text-yellow-500">Conversations</span>

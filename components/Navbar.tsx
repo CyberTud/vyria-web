@@ -6,6 +6,7 @@ import Image from 'next/image'
 
 export default function Navbar() {
   const navRef = useRef<HTMLElement>(null)
+  const ctaRef = useRef<HTMLAnchorElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -16,14 +17,43 @@ export default function Navbar() {
         ease: 'power3.out',
       })
 
+      // Hide CTA button initially
+      gsap.set(ctaRef.current, { opacity: 0, scale: 0.8, display: 'none' })
+
       let lastScroll = 0
       const handleScroll = () => {
         const currentScroll = window.scrollY
+        
+        // Hide/show navbar
         if (currentScroll > lastScroll && currentScroll > 100) {
           gsap.to(navRef.current, { y: -100, duration: 0.3 })
         } else {
           gsap.to(navRef.current, { y: 0, duration: 0.3 })
         }
+        
+        // Show/hide CTA button based on scroll position
+        if (currentScroll > 400) {
+          gsap.to(ctaRef.current, { 
+            opacity: 1, 
+            scale: 1, 
+            display: 'block',
+            duration: 0.3,
+            ease: 'power2.out'
+          })
+        } else {
+          gsap.to(ctaRef.current, { 
+            opacity: 0, 
+            scale: 0.8, 
+            duration: 0.3,
+            ease: 'power2.in',
+            onComplete: () => {
+              if (ctaRef.current) {
+                ctaRef.current.style.display = 'none'
+              }
+            }
+          })
+        }
+        
         lastScroll = currentScroll
       }
 
@@ -63,8 +93,9 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* CTA */}
+          {/* CTA - Hidden initially, shows when scrolling down */}
           <a
+            ref={ctaRef}
             href="#waitlist"
             className="px-6 py-3 bg-yellow-500 text-white font-bold rounded-xl hover:bg-yellow-600 transition-all hover:scale-105 shadow-lg shadow-yellow-500/20"
           >
