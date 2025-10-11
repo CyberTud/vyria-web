@@ -27,20 +27,23 @@ export default function Testimonials() {
       // Infinite scroll animation - always up
       if (carouselRef.current) {
         const carousel = carouselRef.current
-        const halfHeight = carousel.scrollHeight / 2
         
-        // Start from the end
-        carousel.scrollTop = halfHeight
+        // Wait for images to load to get accurate height
+        setTimeout(() => {
+          const halfHeight = carousel.scrollHeight / 2
+          carousel.scrollTop = halfHeight
 
-        gsap.to(carousel, {
-          scrollTop: `-=${halfHeight}`,
-          duration: 40,
-          ease: 'none',
-          repeat: -1,
-          modifiers: {
-            scrollTop: gsap.utils.wrap(0, halfHeight)
-          }
-        })
+          gsap.to(carousel, {
+            scrollTop: 0,
+            duration: 40,
+            ease: 'none',
+            repeat: -1,
+            repeatDelay: 0,
+            onRepeat: () => {
+              carousel.scrollTop = halfHeight
+            }
+          })
+        }, 100)
       }
     }, sectionRef)
 
@@ -78,12 +81,13 @@ export default function Testimonials() {
           <div 
             ref={carouselRef}
             className="h-[600px] overflow-hidden rounded-3xl bg-gradient-to-b from-gray-50 to-white border-2 border-gray-200 shadow-2xl"
+            style={{ pointerEvents: 'none' }}
           >
             <div className="flex flex-col gap-4 p-6">
               {[...testimonials, ...testimonials].map((testimonial, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 w-full max-w-sm mx-auto bg-white rounded-2xl border-2 border-gray-200 overflow-hidden hover:border-yellow-500 transition-all duration-300 hover:shadow-xl"
+                  className="flex-shrink-0 w-full max-w-sm mx-auto bg-white rounded-2xl border-2 border-gray-200 overflow-hidden"
                 >
                   <Image
                     src={testimonial}
