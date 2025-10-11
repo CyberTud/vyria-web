@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
+  const animationRef = useRef<gsap.core.Tween | null>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -24,16 +25,21 @@ export default function Testimonials() {
         ease: 'power3.out',
       })
 
-      // Infinite scroll animation - always up
+      // Infinite scroll with image loading check
       if (carouselRef.current) {
         const carousel = carouselRef.current
+        const images = carousel.querySelectorAll('img')
+        let loadedCount = 0
         
-        // Wait for images to load to get accurate height
-        setTimeout(() => {
+        const startAnimation = () => {
           const halfHeight = carousel.scrollHeight / 2
           carousel.scrollTop = halfHeight
 
-          gsap.to(carousel, {
+          if (animationRef.current) {
+            animationRef.current.kill()
+          }
+
+          animationRef.current = gsap.to(carousel, {
             scrollTop: 0,
             duration: 40,
             ease: 'none',
@@ -43,11 +49,51 @@ export default function Testimonials() {
               carousel.scrollTop = halfHeight
             }
           })
-        }, 100)
+        }
+
+        // Wait for all images to load
+        if (images.length > 0) {
+          images.forEach((img) => {
+            if (img.complete) {
+              loadedCount++
+              if (loadedCount === images.length) {
+                setTimeout(startAnimation, 200)
+              }
+            } else {
+              img.addEventListener('load', () => {
+                loadedCount++
+                if (loadedCount === images.length) {
+                  setTimeout(startAnimation, 200)
+                }
+              })
+            }
+          })
+        } else {
+          setTimeout(startAnimation, 200)
+        }
+
+        // Also restart on window resize
+        const handleResize = () => {
+          if (animationRef.current) {
+            animationRef.current.kill()
+          }
+          setTimeout(startAnimation, 300)
+        }
+        
+        window.addEventListener('resize', handleResize)
+        
+        return () => {
+          window.removeEventListener('resize', handleResize)
+        }
       }
     }, sectionRef)
 
-    return () => ctx.revert()
+    return () => {
+      ctx.revert()
+      if (animationRef.current) {
+        animationRef.current.kill()
+      }
+    }
   }, [])
 
   const testimonials = [
