@@ -29,6 +29,7 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Connect</h4>
             <ul className="space-y-2">
               <li><a href="#waitlist" className="text-gray-400 hover:text-white transition-colors">Join Waitlist</a></li>
+              <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Support</Link></li>
             </ul>
           </div>
         </div>
@@ -38,9 +39,13 @@ export default function Footer() {
           <p className="text-gray-500 text-sm">
             Vyria @ 2025
           </p>
-          <div className="flex gap-6 text-sm text-gray-500">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+          <div className="flex gap-4 text-sm text-gray-500 flex-wrap">
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/terms-of-use" className="hover:text-white transition-colors">Terms of Use</Link>
+            <Link href="/data-protection" className="hover:text-white transition-colors">Data Protection</Link>
+            <Link href="/subscription-terms" className="hover:text-white transition-colors">Subscription Terms</Link>
+            <Link href="/refund-policy" className="hover:text-white transition-colors">Refund Policy</Link>
           </div>
         </div>
       </div>

@@ -128,7 +128,7 @@ export default function TermsPage() {
               If you have questions about these Terms of Service, please contact us at:
             </p>
             <p className="text-gray-700">
-              <strong>Email:</strong> legal@vyria.com
+              <strong>Email:</strong> <a href="mailto:tudor@vyria.app" className="text-yellow-600 hover:text-yellow-700">tudor@vyria.app</a>
             </p>
           </section>
         </div>
