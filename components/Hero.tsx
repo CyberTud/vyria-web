@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import Image from 'next/image'
-import AppStoreButtons from './AppStoreButtons'
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -94,33 +93,9 @@ export default function Hero() {
           {/* Description */}
           <p className="hero-description text-xl md:text-2xl text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto">
             Master any language through AI-powered conversations. Practice job interviews, travel scenarios, 
-            and everyday situations with instant feedback. Download now and start your language journey!
+            and everyday situations with personalized feedback and cultural insights.
           </p>
 
-          {/* CTA */}
-          <div className="hero-cta mb-12">
-            <AppStoreButtons />
-          </div>
-
-          {/* Stats */}
-          <div className="hero-stats flex flex-wrap justify-center gap-8 md:gap-12 text-center">
-            <div>
-              <div className="text-3xl font-bold text-gray-900">24/7</div>
-              <div className="text-sm text-gray-600">AI Practice</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-gray-900">50+</div>
-              <div className="text-sm text-gray-600">Scenarios</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-gray-900">80+</div>
-              <div className="text-sm text-gray-600">Languages</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-gray-900">Real-time</div>
-              <div className="text-sm text-gray-600">Feedback</div>
-            </div>
-          </div>
         </div>
       </div>
 

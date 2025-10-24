@@ -8,19 +8,31 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <h3 className="text-white text-2xl font-bold mb-3">Vyria</h3>
-            <p className="text-gray-400 leading-relaxed max-w-md">
+            <p className="text-gray-400 leading-relaxed max-w-md mb-4">
               Practice real conversations in any language. From learning to understanding — 
               building the future of communication.
             </p>
+            <div className="space-y-2">
+              <p className="text-gray-400 text-sm">
+                <span className="text-gray-300 font-medium">Contact:</span> 
+                <a href="mailto:tudor@vyria.app" className="text-yellow-400 hover:text-yellow-300 transition-colors ml-2">
+                  tudor@vyria.app
+                </a>
+              </p>
+              <p className="text-gray-400 text-sm">
+                For support, feedback, and collaboration
+              </p>
+            </div>
           </div>
 
           {/* Links */}
           <div>
             <h4 className="text-white font-semibold mb-4">Product</h4>
             <ul className="space-y-2">
-              <li><a href="#vision" className="text-gray-400 hover:text-white transition-colors">Vision</a></li>
               <li><a href="#app" className="text-gray-400 hover:text-white transition-colors">App</a></li>
               <li><a href="#testimonials" className="text-gray-400 hover:text-white transition-colors">Testimonials</a></li>
+              <li><Link href="/pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</Link></li>
+              <li><Link href="/feedback" className="text-gray-400 hover:text-white transition-colors">Feedback</Link></li>
             </ul>
           </div>
 
@@ -30,6 +42,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li><a href="https://apps.apple.com/us/app/vyria-language-learning/id6753706880" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Download App</a></li>
               <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Support</Link></li>
+              <li><a href="mailto:tudor@vyria.app" className="text-gray-400 hover:text-white transition-colors">tudor@vyria.app</a></li>
             </ul>
           </div>
         </div>

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Navbar() {
   const navRef = useRef<HTMLElement>(null)
@@ -82,15 +83,18 @@ export default function Navbar() {
 
           {/* Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#vision" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
-              Vision
-            </a>
             <a href="#app" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
               App
             </a>
             <a href="#testimonials" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
               Testimonials
             </a>
+            <Link href="/pricing" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
+              Pricing
+            </Link>
+            <Link href="/feedback" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
+              Feedback
+            </Link>
           </div>
 
           {/* CTA - Hidden initially, shows when scrolling down */}
