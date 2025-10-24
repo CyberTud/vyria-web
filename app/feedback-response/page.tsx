@@ -28,7 +28,8 @@ export default function FeedbackResponse() {
     setError('')
 
     try {
-      const response = await fetch('/api/feedback/all', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+      const response = await fetch(`${apiUrl}/api/feedback/all`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +60,8 @@ export default function FeedbackResponse() {
 
   const handleStatusUpdate = async (id: number, newStatus: string) => {
     try {
-      const response = await fetch('/api/feedback/status', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+      const response = await fetch(`${apiUrl}/api/feedback/status`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
