@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import Image from 'next/image'
-import WaitlistForm from './WaitlistForm'
+import AppStoreButtons from './AppStoreButtons'
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -57,7 +57,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={heroRef} id="waitlist" className="relative min-h-screen bg-gradient-to-b from-white via-yellow-50/30 to-white overflow-hidden">
+    <section ref={heroRef} id="download" className="relative min-h-screen bg-gradient-to-b from-white via-yellow-50/30 to-white overflow-hidden">
       {/* Background accent */}
       <div className="hero-bg-accent absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-yellow-100 to-yellow-50 rounded-bl-[200px] opacity-60 -z-10" />
       
@@ -94,12 +94,12 @@ export default function Hero() {
           {/* Description */}
           <p className="hero-description text-xl md:text-2xl text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto">
             Master any language through AI-powered conversations. Practice job interviews, travel scenarios, 
-            and everyday situations with instant feedback.
+            and everyday situations with instant feedback. Download now and start your language journey!
           </p>
 
           {/* CTA */}
           <div className="hero-cta mb-12">
-            <WaitlistForm />
+            <AppStoreButtons />
           </div>
 
           {/* Stats */}

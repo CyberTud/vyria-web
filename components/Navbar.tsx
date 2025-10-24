@@ -96,10 +96,12 @@ export default function Navbar() {
           {/* CTA - Hidden initially, shows when scrolling down */}
           <a
             ref={ctaRef}
-            href="#waitlist"
+            href="https://apps.apple.com/us/app/vyria-language-learning/id6753706880"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 py-3 bg-yellow-500 text-white font-bold rounded-xl hover:bg-yellow-600 transition-all hover:scale-105 shadow-lg shadow-yellow-500/20"
           >
-            Join Waitlist
+            Download App
           </a>
         </div>
       </div>

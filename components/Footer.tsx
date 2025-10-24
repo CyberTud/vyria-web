@@ -28,7 +28,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Connect</h4>
             <ul className="space-y-2">
-              <li><a href="#waitlist" className="text-gray-400 hover:text-white transition-colors">Join Waitlist</a></li>
+              <li><a href="https://apps.apple.com/us/app/vyria-language-learning/id6753706880" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Download App</a></li>
               <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Support</Link></li>
             </ul>
           </div>

@@ -128,7 +128,7 @@ export default function PrivacyPage() {
               If you have questions about this privacy policy or your data, please contact us at:
             </p>
             <p className="text-gray-700">
-              <strong>Email:</strong> <a href="mailto:tudor@vyria.app" className="text-yellow-600 hover:text-yellow-700">tudor@vyria.app</a>
+              <strong>Email:</strong> privacy@vyria.com
             </p>
           </section>
         </div>
