@@ -25,7 +25,8 @@ export default function Feedback() {
     }
 
     try {
-      const response = await fetch('/api/feedback', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+      const response = await fetch(`${apiUrl}/api/feedback`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
