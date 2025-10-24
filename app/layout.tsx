@@ -29,12 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <script src="https://getlaunchlist.com/js/widget.js" defer></script>
-        <script
-          defer
-          data-website-id="dfid_KeZpFFEIGPipNDBMfik9p"
-          data-domain="vyria.app"
-          src="https://datafa.st/js/script.js">
-        </script>
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="67e135ab-4d1e-414a-9483-e2644989ed24"></script>
       </head>
       <body className={inter.className}>{children}</body>
     </html>
